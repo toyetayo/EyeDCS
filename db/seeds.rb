@@ -58,3 +58,4 @@ Service.all.each do |service|
     DiseaseService.create!(service: service, disease: disease)
   end
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
