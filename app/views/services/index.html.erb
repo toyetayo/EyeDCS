@@ -4,3 +4,8 @@
     <li><%= link_to service.name, service_path(service) %></li>
   <% end %>
 </ul>
+
+<div class="mt-4">
+  <%= paginate @Services %>
+</div>
+

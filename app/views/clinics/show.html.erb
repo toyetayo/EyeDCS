@@ -1,0 +1,12 @@
+<h1><%= @clinic.name %></h1>
+<p>Address: <%= @clinic.address %></p>
+<p>Contact: <%= @clinic.contact %></p>
+<p>Latitude: <%= @clinic.latitude %></p>
+<p>Longitude: <%= @clinic.longitude %></p>
+
+<h2>Services Offered:</h2>
+<ul>
+  <% @clinic.services.each do |service| %>
+    <li><%= link_to service.name, service_path(service) %></li>
+  <% end %>
+</ul>

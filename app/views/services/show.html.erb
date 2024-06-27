@@ -1,0 +1,17 @@
+<h1><%= @service.name %></h1>
+<p>Description: <%= @service.description %></p>
+
+<h2>Offered by Clinics:</h2>
+<ul>
+  <% @service.clinics.each do |clinic| %>
+    <li><%= link_to clinic.name, clinic_path(clinic) %></li>
+  <% end %>
+</ul>
+
+<h2>Associated Diseases:</h2>
+<ul>
+  <% @service.diseases.each do |disease| %>
+    <li><%= link_to disease.name, disease_path(disease) %></li>
+  <% end %>
+</ul>
+

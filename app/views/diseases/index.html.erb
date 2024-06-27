@@ -4,3 +4,8 @@
     <li><%= link_to disease.name, disease_path(disease) %></li>
   <% end %>
 </ul>
+
+<div class="mt-4">
+  <%= paginate @Diseases %>
+</div>
+
