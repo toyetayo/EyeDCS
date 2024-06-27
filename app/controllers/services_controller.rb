@@ -24,6 +24,12 @@ class ServicesController < ApplicationController
     # @service is already set by before_action
   end
 
+  def destroy
+    @service.destroy
+    redirect_to services_url, notice: 'Service was successfully destroyed.'
+  end
+
+
   # POST /services
   def create
     @service = Service.new(service_params)

@@ -7,6 +7,12 @@ class DiseasesController < ApplicationController
     @diseases = Disease.page(params[:page]).per(10)
   end
 
+  def destroy
+    @disease.destroy
+    redirect_to diseases_url, notice: 'Disease was successfully destroyed.'
+  end
+
+
   # GET /diseases/1
   def show
     @disease = Disease.find(params[:id])

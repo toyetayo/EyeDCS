@@ -18,6 +18,12 @@ class ClinicsController < ApplicationController
     @clinic = Clinic.new
   end
 
+  # DELETE /clinics/1
+  def destroy
+    @clinic.destroy
+    redirect_to clinics_url, notice: 'Clinic was successfully destroyed.'
+  end
+
   # GET /clinics/1/edit
   def edit
     # @clinic is already set by before_action
