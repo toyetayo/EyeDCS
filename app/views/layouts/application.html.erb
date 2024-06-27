@@ -2,19 +2,19 @@
 <html>
   <head>
     <title>EyeDcs</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <nav>
-        <ul>
+  <body class="bg-gray-100">
+    <main class="container mx-auto mt-10 px-5">
+      <nav class="flex justify-between items-center bg-blue-900 py-4 px-6 mb-6 rounded-lg shadow-md">
+        <ul class="flex space-x-4 text-white font-bold">
           <li><%= link_to 'Home', root_path %></li>
           <li><%= link_to 'About', about_path %></li>
           <li><%= link_to 'Clinics', clinics_path %></li>
