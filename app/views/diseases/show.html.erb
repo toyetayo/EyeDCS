@@ -1,9 +1,20 @@
-<h1><%= @disease.name %></h1>
-<p>Description: <%= @disease.description %></p>
+<!-- app/views/diseases/show.html.erb -->
+
+<h1><%= @disease_details[:name] %></h1>
+<p>Description: <%= @disease_details[:description] %></p>
+
+<h2>Symptoms:</h2>
+<p><%= @disease_details[:symptoms] %></p>
+
+<h2>Treatment:</h2>
+<p><%= @disease_details[:treatment] %></p>
+
+<h2>Prevalence:</h2>
+<p><%= @disease_details[:prevalence] %>%</p>
 
 <h2>Treated by Services:</h2>
-<ul>
-  <% @disease.services.each do |service| %>
+<ul> 
+  <% @services.each do |service| %>
     <li><%= link_to service.name, service_path(service) %></li>
   <% end %>
 </ul>

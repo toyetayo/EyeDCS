@@ -5,6 +5,10 @@ class DiseasesController < ApplicationController
   # GET /diseases
   def index
     @diseases = Disease.page(params[:page]).per(10)
+
+    if params[:search].present?
+      @diseases = @diseases.where("name LIKE ?", "%#{params[:search]}%")
+    end
   end
 
   def destroy
@@ -16,6 +20,7 @@ class DiseasesController < ApplicationController
   # GET /diseases/1
   def show
     @disease = Disease.find(params[:id])
+    @disease_details = Faker::EyeDiseases.disease_details(@disease.name)
     @services = @disease.services
   end
 

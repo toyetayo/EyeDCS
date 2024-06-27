@@ -1,5 +1,10 @@
-
 <h1>Clinics</h1>
+
+<%= form_with url: clinics_path, method: :get do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Clinics..." %>
+  <%= submit_tag "Search", class: "btn btn-primary ml-2" %>
+<% end %>
+
 <ul>
   <% @clinics.each do |clinic| %>
     <li><%= link_to clinic.name, clinic_path(clinic) %></li>

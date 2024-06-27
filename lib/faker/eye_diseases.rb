@@ -30,6 +30,16 @@ module Faker
         ].sample
       end
 
+      def disease_details(disease_name)
+        {
+          name: disease_name,
+          description: disease_description(disease_name),
+          symptoms: disease_symptoms(disease_name),
+          treatment: disease_treatment(disease_name),
+          prevalence: disease_prevalence
+        }
+      end
+
       def disease_symptoms(disease_name)
         case disease_name
         when "Cataracts"
@@ -129,7 +139,50 @@ module Faker
       end
 
       def disease_description(disease_name)
-        "Description for #{disease_name}."
+        case disease_name
+        when "Cataracts"
+          "Cataracts cause clouding of the eye's natural lens, leading to blurry vision."
+        when "Glaucoma"
+          "Glaucoma is a group of eye conditions that damage the optic nerve, often due to high intraocular pressure."
+        when "Macular Degeneration"
+          "Macular degeneration causes loss in the center of the field of vision. It affects the retina's ability to perceive light."
+        when "Diabetic Retinopathy"
+          "Diabetic retinopathy is caused by damage to the blood vessels of the retina due to diabetes."
+        when "Retinal Detachment"
+          "Retinal detachment occurs when the retina separates from the back of the eye, causing sudden vision loss."
+        when "Conjunctivitis (Pink Eye)"
+          "Conjunctivitis, commonly known as pink eye, is an inflammation of the conjunctiva, the thin, transparent layer that lines the inner surface of the eyelid and covers the white part of the eye."
+        when "Dry Eye Syndrome"
+          "Dry eye syndrome is a chronic lack of sufficient lubrication and moisture on the surface of the eye."
+        when "Strabismus"
+          "Strabismus is a condition in which the eyes do not properly align with each other when looking at an object."
+        when "Retinitis Pigmentosa"
+          "Retinitis pigmentosa is a group of genetic disorders that cause gradual loss of vision due to abnormalities of the photoreceptors in the retina."
+        when "Amblyopia (Lazy Eye)"
+          "Amblyopia, commonly known as lazy eye, is reduced vision in one or both eyes due to abnormal visual development early in life."
+        when "Keratoconus"
+          "Keratoconus is an eye condition that causes the cornea to progressively thin and change shape, leading to distorted vision."
+        when "Uveitis"
+          "Uveitis is inflammation of the uvea, the middle layer of the eye that consists of the iris, ciliary body, and choroid."
+        when "Ptosis"
+          "Ptosis is drooping of the upper eyelid due to weakness or separation of the muscles responsible for raising the eyelid."
+        when "Blepharitis"
+          "Blepharitis is inflammation of the eyelid margins, resulting in red, irritated, itchy, and dandruff-like scales on the eyelashes."
+        when "Macular Hole"
+          "A macular hole is a small break in the macula, located in the center of the eye's retina."
+        when "Choroidal Neovascularization"
+          "Choroidal neovascularization is the growth of abnormal blood vessels beneath the retina."
+        when "Presbyopia"
+          "Presbyopia is a condition associated with aging that makes it difficult to focus on close objects."
+        when "Color Blindness (Color Vision Deficiency)"
+          "Color blindness, or color vision deficiency, is the inability to perceive differences between certain colors."
+        when "Retinoblastoma"
+          "Retinoblastoma is a rare type of eye cancer that begins in the retina of the eye."
+        when "Myopia (Nearsightedness)"
+          "Myopia, or nearsightedness, is a refractive error where close objects appear clearly, but distant objects appear blurry."
+        else
+          "General description for #{disease_name}."
+        end
       end
     end
   end

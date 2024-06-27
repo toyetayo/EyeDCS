@@ -5,6 +5,10 @@ class ClinicsController < ApplicationController
   # GET /clinics
   def index
     @clinics = Clinic.page(params[:page]).per(10)
+
+    if params[:search].present?
+      @clinics = @clinics.where("name LIKE ?", "%#{params[:search]}%")
+    end
   end
 
   # GET /clinics/1

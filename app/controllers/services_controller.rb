@@ -5,6 +5,10 @@ class ServicesController < ApplicationController
   # GET /services
   def index
     @services = Service.page(params[:page]).per(10)
+
+    if params[:search].present?
+      @services = @services.where("name LIKE ?", "%#{params[:search]}%")
+    end
   end
 
   # GET /services/1
