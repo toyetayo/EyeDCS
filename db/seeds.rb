@@ -10,52 +10,76 @@
 #   require 'csv'
 
 # Clear existing data (optional, but useful for resetting during development)
+# db/seeds.rb
+
+require 'faker'
+
+# Clear existing data (optional, but useful for resetting during development)
 ClinicService.destroy_all
 DiseaseService.destroy_all
 Clinic.destroy_all
 Service.destroy_all
 Disease.destroy_all
 
-# Load Clinics from CSV
-CSV.foreach(Rails.root.join('db/seed_data/clinics.csv'), headers: true) do |row|
+# Number of records to generate
+NUM_CLINICS = 250
+NUM_SERVICES = 250
+NUM_DISEASES = 250
+
+# Generate Clinics with Faker
+puts "Generating Clinics with Faker..."
+NUM_CLINICS.times do
   Clinic.create!(
-    name: row['name'],
-    address: row['address'],
-    contact: row['contact'],
-    latitude: row['latitude'].to_f,
-    longitude: row['longitude'].to_f
+    name: Faker::Company.name,
+    address: Faker::Address.full_address,
+    contact: Faker::PhoneNumber.phone_number,
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude
   )
 end
 
-# Load Services from CSV
-CSV.foreach(Rails.root.join('db/seed_data/services.csv'), headers: true) do |row|
+# Generate Services with Faker
+puts "Generating Services with Faker..."
+NUM_SERVICES.times do
   Service.create!(
-    name: row['name'],
-    description: row['description']
+    name: Faker::Commerce.product_name,
+    description: Faker::Lorem.sentence
   )
 end
 
-# Load Diseases from CSV
-CSV.foreach(Rails.root.join('db/seed_data/diseases.csv'), headers: true) do |row|
+# Generate Diseases with Faker
+puts "Generating Diseases with Faker..."
+NUM_DISEASES.times do
   Disease.create!(
-    name: row['name'],
-    symptoms: row['symptoms'],
-    treatment: row['treatment'],
-    prevalence: row['prevalence'],
-    description: row['description']
+    name: Faker::Science.element,
+    symptoms: Faker::Lorem.sentence(word_count: 3),
+    treatment: Faker::Lorem.sentence,
+    prevalence: Faker::Number.between(from: 1, to: 100),
+    description: Faker::Lorem.paragraph
   )
 end
 
-# Manually create associations for ClinicServices and DiseaseServices
+# Create associations for ClinicServices
+puts "Creating associations between Clinics and Services..."
 Clinic.all.each do |clinic|
-  Service.all.sample(3).each do |service|
+  services = Service.all.sample(3)  # Each clinic has 3 random services
+  services.each do |service|
     ClinicService.create!(clinic: clinic, service: service)
   end
 end
 
+# Create associations for DiseaseServices
+puts "Creating associations between Services and Diseases..."
 Service.all.each do |service|
-  Disease.all.sample(2).each do |disease|
+  diseases = Disease.all.sample(2)  # Each service is linked to 2 random diseases
+  diseases.each do |disease|
     DiseaseService.create!(service: service, disease: disease)
   end
 end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+# Create a default admin user (for development environment only)
+if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+end
+
+puts "Database seeding with Faker completed!"
