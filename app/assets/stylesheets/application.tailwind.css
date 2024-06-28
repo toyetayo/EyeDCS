@@ -48,3 +48,7 @@ footer {
 .list-none {
   list-style-type: none; /* Remove default list-style (bullets) */
 }
+main {
+  overflow-y: auto; /* Enables vertical scrolling if content overflows */
+  /* Add other styles as needed */
+}
