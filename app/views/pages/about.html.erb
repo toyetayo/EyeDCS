@@ -3,9 +3,17 @@
 
 <p class="mb-4">Details about the data sources and the project:</p>
 <ul class="mb-4">
-  <li class="list-disc ml-4">Clinics data from CSV and Faker</li>
-  <li class="list-disc ml-4">Services data from Faker</li>
-  <li class="list-disc ml-4">Diseases data from Faker</li>
+  <li class="list-disc ml-4">Clinics data: Custom data using Faker gem</li>
+  <li class="list-disc ml-4">Services data: Custom data using Faker gem</li>
+  <li class="list-disc ml-4">Diseases data: Custom data using Faker gem</li>
 </ul>
 
-<img src="/assets/ERD.jpg" alt="ERD Diagram" class="max-w-full h-auto">
+<p class="mb-4">Integration details:</p>
+<ul class="mb-4">
+  <li class="list-disc ml-4">Clinics and Services: Managed through a join table (ClinicServices)</li>
+  <li class="list-disc ml-4">Services and Diseases: Managed through a join table (DiseaseServices)</li>
+</ul>
+
+<!-- Add a class to target the image for styling -->
+<img src="/assets/ERD.jpg" alt="ERD Diagram" class="about-image">
+

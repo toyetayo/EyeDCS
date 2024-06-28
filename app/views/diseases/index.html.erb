@@ -1,11 +1,6 @@
 <!-- app/views/diseases/index.html.erb -->
 <h1>Diseases</h1>
 
-<%= form_with url: diseases_path, method: :get do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Diseases..." %>
-  <%= submit_tag "Search", class: "btn btn-primary ml-2" %>
-<% end %>
-
 <ul>
   <% @diseases.each do |disease| %>
     <li>

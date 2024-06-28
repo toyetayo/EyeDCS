@@ -1,0 +1,54 @@
+<!-- app/views/search/index.html.erb -->
+<h1>Search</h1>
+
+<%= form_with url: search_index_path, method: :get, local: true do |f| %>
+  <div>
+    <%= f.label :search, "Search term:" %>
+    <%= f.text_field :search, value: params[:search] %>
+  </div>
+
+  <div>
+    <%= f.label :category, "Filter by category:" %>
+    <!-- Dynamic dropdown for categories -->
+    <%= f.select :category, options_for_select(["All"] + category_options_for_select, selected: params[:category]), include_blank: "All" %>
+  </div>
+
+  <div>
+    <%= f.submit "Search" %>
+  </div>
+<% end %>
+
+<h2>Results</h2>
+
+<% if @clinics.any? %>
+  <h3>Clinics</h3>
+  <ul>
+    <% @clinics.each do |clinic| %>
+      <li><%= clinic.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @services.any? %>
+  <h3>Services</h3>
+  <ul>
+    <% @services.each do |service| %>
+      <li><%= service.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @diseases.any? %>
+  <h3>Diseases</h3>
+  <ul>
+    <% @diseases.each do |disease| %>
+      <li><%= disease.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @clinics.empty? && @services.empty? && @diseases.empty? %>
+  <p>No results found for "<%= params[:search] %>" in "<%= params[:category].presence || 'All categories' %>".</p>
+<% end %>
+
+

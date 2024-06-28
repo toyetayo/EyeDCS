@@ -1,17 +1,12 @@
 <h1>Services</h1>
 
-<%= form_with url: services_path, method: :get do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Services..." %>
-  <%= submit_tag "Search", class: "btn btn-primary ml-2" %>
-<% end %>
-
 <ul>
   <% @services.each do |service| %>
     <li><%= link_to service.name, service_path(service) %></li>
   <% end %>
 </ul>
 
-<div class="mt-4">
+<div class="mt-2">
   <%= paginate @services %>
 </div>
 

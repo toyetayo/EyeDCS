@@ -5,32 +5,16 @@ class ClinicsController < ApplicationController
   # GET /clinics
   def index
     @clinics = Clinic.page(params[:page]).per(10)
-
-    if params[:search].present?
-      @clinics = @clinics.where("name LIKE ?", "%#{params[:search]}%")
-    end
   end
 
   # GET /clinics/1
   def show
-    @clinic = Clinic.find(params[:id])
     @services = @clinic.services
   end
 
   # GET /clinics/new
   def new
     @clinic = Clinic.new
-  end
-
-  # DELETE /clinics/1
-  def destroy
-    @clinic.destroy
-    redirect_to clinics_url, notice: 'Clinic was successfully destroyed.'
-  end
-
-  # GET /clinics/1/edit
-  def edit
-    # @clinic is already set by before_action
   end
 
   # POST /clinics
@@ -53,14 +37,21 @@ class ClinicsController < ApplicationController
     end
   end
 
-  private
-    # Use a before_action to fetch the clinic by :id for show, edit, update, and destroy actions
-    def set_clinic
-      @clinic = Clinic.find(params[:id])
-    end
+  # DELETE /clinics/1
+  def destroy
+    @clinic.destroy
+    redirect_to clinics_url, notice: 'Clinic was successfully destroyed.'
+  end
 
-    # Use strong parameters to whitelist attributes for clinic creation/update
-    def clinic_params
-      params.require(:clinic).permit(:name, :address, :contact, :latitude, :longitude)
-    end
+  private
+
+  # Use a before_action to fetch the clinic by :id for show, edit, update, and destroy actions
+  def set_clinic
+    @clinic = Clinic.find(params[:id])
+  end
+
+  # Use strong parameters to whitelist attributes for clinic creation/update
+  def clinic_params
+    params.require(:clinic).permit(:name, :address, :contact, :latitude, :longitude)
+  end
 end
